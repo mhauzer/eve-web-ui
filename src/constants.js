@@ -1,1 +1,1 @@
-export const SERVER_URL = 'http://eve-pa.herokuapp.com'
+export const SERVER_URL = 'http://eve-pa.herokuapp.com/'
