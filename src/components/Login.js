@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
-import Grid from '@material-ui/core/Grid';
+import Card from '@material-ui/core/Card';
 import SkyLight from "react-skylight";
 import { SERVER_URL } from '../constants';
 import Tasklist from './Tasklist';
+import NaturalConsole from './NaturalConsole';
 
 class Login extends Component {
     constructor(props) {
@@ -39,10 +40,10 @@ class Login extends Component {
         .catch(err => console.error(err));
     }
 
-    login = () => {
+    login = () => {        
         const user = {username: this.state.username, password: this.state.password};
-        console.log(JSON.stringify(user));
-        console.log(SERVER_URL + 'login');
+        //console.log(JSON.stringify(user));
+        //console.log(SERVER_URL + 'login');
         fetch(SERVER_URL + 'login', {
             method: 'POST',
             headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
@@ -96,16 +97,16 @@ class Login extends Component {
     }
 
 
-    render() {
+    render() {        
         if (this.state.isAuthenticated === true && this.state.isInitialized === true) {
+            //<Tasklist tasks={this.state.person._links.tasks.href} owner={this.state.person._links.self.href}/>
             return (
                 <div>
-                    <Grid container justify="flex-end" alignItems="center">
-                        <Grid item>
-                            <Button variant="contained" onClick={this.logout}>Logout</Button>
-                        </Grid>
-                    </Grid>
-                    <Tasklist tasks={this.state.person._links.tasks.href} owner={this.state.person._links.self.href}/>
+                    <Card>
+                        <Button variant="contained" onClick={this.logout}>Logout</Button>
+                    </Card>
+                    <NaturalConsole />
+                    
                 </div>
             );
         } else return (
